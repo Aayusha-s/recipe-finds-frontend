@@ -1,4 +1,4 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -17,9 +17,9 @@ body {
   padding: 0 2rem;
 }
 
-/* .App {
+.App {
   margin-top: 80px;
-} */
+}
 
 .highlight {
   color: #63873E;
@@ -63,7 +63,4 @@ body {
   text-align: center;
   margin-bottom: 3rem;
   color: #466D1D;
-}
-
-
-
+} */

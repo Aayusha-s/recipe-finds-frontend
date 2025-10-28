@@ -1,0 +1,598 @@
+/* src/pages/Login.css */
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #F8FAF5 0%, #E3E9DD 50%, #D9EFC3 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Main Container */
+.login-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1000px;
+  width: 100%;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  min-height: 600px;
+}
+
+/* Left Side - Illustration */
+.login-left {
+  background: linear-gradient(135deg, #d4edbc  0%, #466D1D 100%);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Back Button */
+.login-back-button {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: #84aa5b;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  margin: 0;
+  
+}
+
+.login-back-button:hover {
+   background:  #81A15F;
+  border-color: #cbdfb5;
+  transform: translateX(-3px);
+}
+
+.welcome-illustration {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cooking Scene Animation */
+.cooking-scene {
+  position: relative;
+  height: 150px;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chef-hat {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 45px;
+  background: white;
+  border-radius: 50% 50% 0 0;
+}
+
+.chef-hat::before {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: -8px;
+  width: 75px;
+  height: 15px;
+  background: white;
+  border-radius: 8px;
+}
+
+.cooking-pot {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.pot {
+  width: 80px;
+  height: 50px;
+  background: #8B4513;
+  border-radius: 8px 8px 0 0;
+  position: relative;
+}
+
+.pot::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 95px;
+  height: 8px;
+  background: #A0522D;
+  border-radius: 4px;
+}
+
+.steam {
+  position: absolute;
+  bottom: 50px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: steamRise 3s ease-in-out infinite;
+}
+
+.steam-1 {
+  width: 10px;
+  height: 10px;
+  left: 28px;
+  animation-delay: 0s;
+}
+
+.steam-2 {
+  width: 12px;
+  height: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 1s;
+}
+
+.steam-3 {
+  width: 8px;
+  height: 8px;
+  right: 28px;
+  animation-delay: 2s;
+}
+
+@keyframes steamRise {
+  0% { 
+    transform: translateY(0) scale(1); 
+    opacity: 0.6; 
+  }
+  100% { 
+    transform: translateY(-30px) scale(1.3); 
+    opacity: 0; 
+  }
+}
+
+/* Ingredients */
+.ingredients {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+}
+
+.ingredient {
+  border-radius: 50%;
+  animation: ingredientFloat 4s ease-in-out infinite;
+}
+
+.tomato {
+  width: 16px;
+  height: 16px;
+  background: #FF6B6B;
+  animation-delay: 0s;
+}
+
+.herb {
+  width: 12px;
+  height: 12px;
+  background: #81A15F;
+  animation-delay: 1s;
+}
+
+.garlic {
+  width: 14px;
+  height: 14px;
+  background: #FFFFFF;
+  animation-delay: 2s;
+}
+
+@keyframes ingredientFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(8deg); }
+}
+
+/* Welcome Message */
+.welcome-message {
+  max-width: 300px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-message h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  background: linear-gradient(135deg, #FFFFFF 0%, #E3E9DD 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.welcome-message p {
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.feature-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
+  width: 100%;
+}
+
+.highlight {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  max-width: 250px;
+  justify-content: flex-start;
+}
+
+.highlight-icon {
+  font-size: 1rem;
+  color: #D9EFC3;
+  flex-shrink: 0;
+}
+
+.highlight span {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: white;
+}
+
+/* Right Side - Form */
+.login-right {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form-container {
+  width: 100%;
+  max-width: 320px;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-logo {
+  height: 50px;
+  margin-bottom: 0.8rem;
+}
+
+.form-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #466D1D;
+  margin-bottom: 0.5rem;
+}
+
+.form-header p {
+  color: #81A15F;
+  font-size: 0.95rem;
+}
+
+/* Form Styles */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #466D1D;
+  font-size: 0.85rem;
+}
+
+.password-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forgot-password {
+  color: #81A15F;
+  font-size: 0.75rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+  color: #466D1D;
+  text-decoration: underline;
+}
+
+/* Input Container with Icons */
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  color: #81A15F;
+  font-size: 1rem;
+  z-index: 2;
+}
+
+.form-input {
+  padding: 0.9rem 1rem 0.9rem 2.8rem;
+  border: 2px solid #E3E9DD;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: #F8FAF5;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #81A15F;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(129, 161, 95, 0.1);
+}
+
+.form-input.error {
+  border-color: #FF6B6B;
+  background: #FFF5F5;
+}
+
+.error-message {
+  color: #FF6B6B;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Password Input */
+.password-toggle {
+  position: absolute;
+  right: 0.8rem;
+  background: none;
+  border: none;
+  color: #81A15F;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-toggle:hover {
+  background: #E3E9DD;
+}
+
+/* Login Options */
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.3rem 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.85rem;
+  color: #63873E;
+  cursor: pointer;
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.checkmark {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #E3E9DD;
+  border-radius: 4px;
+  position: relative;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.checkbox-input:checked + .checkmark {
+  background: #81A15F;
+  border-color: #81A15F;
+}
+
+.checkbox-input:checked + .checkmark::after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  font-size: 0.7rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Login Button */
+.login-button {
+  background: linear-gradient(135deg, #81A15F 0%, #63873E 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.login-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 135, 62, 0.3);
+}
+
+.login-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.login-button.loading {
+  background: linear-gradient(135deg, #ADC891 0%, #81A15F 100%);
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Signup Link */
+.signup-link {
+  text-align: center;
+  color: #81A15F;
+  font-size: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.signup-link-text {
+  color: #466D1D;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signup-link-text:hover {
+  text-decoration: underline;
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 968px) {
+  .login-back-button {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .login-container {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    min-height: 500px;
+  }
+  
+  .login-left {
+    display: none;
+  }
+  
+  .login-right {
+    padding: 1.5rem;
+    padding-top: 3rem;
+  }
+  
+  .login-form-container {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-page {
+    padding: 0.5rem;
+  }
+  
+  .login-right {
+    padding: 3rem;
+     padding-top: 3rem;
+  }
+  
+  .form-header h2 {
+    font-size: 1.6rem;
+  }
+  
+  .form-logo {
+    height: 45px;
+  }
+  
+  .login-options {
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: flex-start;
+  }
+  
+  .input-icon {
+    left: 0.8rem;
+  }
+  
+  .form-input {
+    padding-left: 2.5rem;
+  }
+
+   .login-back-button {
+    top: 0.8rem;
+    left: 0.8rem;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.8rem;
+  }
+}
