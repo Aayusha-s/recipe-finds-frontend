@@ -11,6 +11,7 @@ import Community from './pages/Community';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import './App.css';
+import UserProfile from './pages/UserProfile';
 
 function App() {
   return (
@@ -27,9 +28,8 @@ function App() {
             
             {/* Explore Route */}
             <Route path="/explore" element={
-              <Layout>
+              
                 <Explore />
-              </Layout>
             } />
             
             {/* Recipe Details Route */}
@@ -64,6 +64,15 @@ function App() {
                 <Community />
               </Layout>
             } />
+
+            <Route path='/chef/:username' element={
+              <Layout>
+                <UserProfile />
+              </Layout>
+            } 
+            />
+
+            
             {/* Auth Routes (without Layout) */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />

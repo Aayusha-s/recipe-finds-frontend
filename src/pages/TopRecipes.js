@@ -26,7 +26,7 @@ const TopRecipes = () => {
       likes: "1022",
       rating: 4.9,
       cookTime: "45 mins",
-      difficulty: "Intermediate",
+      difficulty: "Medium",
       category: "meat",
       image: "/images/French Sausage.png",
       description: "Classic French sausage with herbs and spices",
@@ -52,7 +52,7 @@ const TopRecipes = () => {
       likes: "732",
       rating: 4.9,
       cookTime: "1 hour",
-      difficulty: "Expert",
+      difficulty: "Hard",
       category: "noodles",
       image: "/images/Japanese Ramen Noodle.png",
       description: "Authentic Japanese ramen with rich broth",
@@ -78,7 +78,7 @@ const TopRecipes = () => {
       likes: "567",
       rating: 4.9,
       cookTime: "2 hours",
-      difficulty: "Expert",
+      difficulty: "Hard",
       category: "meat",
       image: "/images/Beef Wellington.png",
       description: "Perfectly cooked beef wrapped in puff pastry",
@@ -104,7 +104,7 @@ const TopRecipes = () => {
       likes: "423",
       rating: 4.7,
       cookTime: "35 mins",
-      difficulty: "Intermediate",
+      difficulty: "Medium",
       category: "asian",
       image: "/images/Thai Green Curry.png",
       description: "Spicy and aromatic Thai green curry",
@@ -117,7 +117,7 @@ const TopRecipes = () => {
       likes: "389",
       rating: 4.8,
       cookTime: "40 mins",
-      difficulty: "Intermediate",
+      difficulty: "Medium",
       category: "dessert",
       image: "/images/Chocolate Lava Cake.png",
       description: "Decadent chocolate cake with molten center",
@@ -176,9 +176,9 @@ const TopRecipes = () => {
         return '#4CAF50';
       case 'easy':
         return '#8BC34A';
-      case 'intermediate':
+      case 'medium':
         return '#FF9800';
-      case 'expert':
+      case 'hard':
         return '#F44336';
       default:
         return '#666';

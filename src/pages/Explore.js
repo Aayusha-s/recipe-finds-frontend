@@ -1,4 +1,4 @@
-// Explore.js - FIXED TO SHOW ALL RECIPES WITH INFINITE SCROLL
+// Explore.js - WITH NAVIGATION LINKS ADDED
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -334,6 +334,8 @@ const Explore = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
+  // Add active nav link tracking
+  const currentPath = location.pathname;
 
    const handleRecipeClick = (recipeId) => {
     navigate(`/recipe/${recipeId}`);
@@ -584,10 +586,46 @@ const Explore = () => {
             </Link>
           </div>
           
+          {/* ADDED NAVIGATION LINKS */}
+          <ul className="explore-nav-menu">
+            <li className="explore-nav-item">
+              <Link 
+                to="/" 
+                className={`explore-nav-link ${currentPath === '/' ? 'explore-nav-link-active' : ''}`}
+              >
+                Home
+              </Link>
+            </li>
+            <li className="explore-nav-item">
+              <Link 
+                to="/explore" 
+                className={`explore-nav-link ${currentPath === '/explore' ? 'explore-nav-link-active' : ''}`}
+              >
+                Explore
+              </Link>
+            </li>
+            <li className="explore-nav-item">
+              <Link 
+                to="/top-recipes" 
+                className={`explore-nav-link ${currentPath === '/top-recipes' ? 'explore-nav-link-active' : ''}`}
+              >
+                Top Recipes
+              </Link>
+            </li>
+            <li className="explore-nav-item">
+              <Link 
+                to="/community" 
+                className={`explore-nav-link ${currentPath === '/community' ? 'explore-nav-link-active' : ''}`}
+              >
+                Community
+              </Link>
+            </li>
+          </ul>
+          
           <div className="explore-search-section">
             <div className="explore-search-container">
               <div className="search-input-wrapper">
-                <FontAwesomeIcon icon={faSearch} className="search-icon-left" />
+                {/* <FontAwesomeIcon icon={faSearch} className="search-icon-left" /> */}
                 <input 
                   type="text" 
                   placeholder="Search recipes, ingredients, or chefs..." 
@@ -601,11 +639,12 @@ const Explore = () => {
                   onClick={() => setShowFilters(!showFilters)}
                 >
                   <FontAwesomeIcon icon={faFilter} />
-                  Filters
+                  <span className="filter-btn-text">Filters</span>
                 </button>
               </div>
-              <button className="explore-search-button" onClick={handleSearch}>
-                Search
+              <button className="explore-search-button" onClick={handleSearch}> 
+                <FontAwesomeIcon icon={faSearch} className="explore-search-icon" />
+                <span className="explore-search-btn-text">Search</span>
               </button>
             </div>
 
@@ -792,7 +831,7 @@ const Explore = () => {
               onClick={() => navigate('/signup', { state: { from: location } })}
             >
               <FontAwesomeIcon icon={faUserPlus} className="btn-icon" />
-              Sign Up
+              <span className="explore-btn-text">Sign Up</span>
             </button>
           )}
         </div>
@@ -855,8 +894,8 @@ const Explore = () => {
           )}
 
 </div>
-          {/* Masonry Grid */}
-          <div className="masonry-grid">
+{/* Masonry Grid */}
+<div className="masonry-grid">
            {displayRecipes.map(recipe => (
     <div 
       key={recipe.id} 
@@ -940,4 +979,3 @@ const Explore = () => {
 };
 
 export default Explore;
-

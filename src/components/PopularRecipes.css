@@ -300,6 +300,7 @@
   }
 }
 
+
 @media (max-width: 768px) {
   .popular-recipes-section {
     padding: 60px 0;
@@ -343,5 +344,19 @@
     height: 32px;
     padding: 0.3rem 0.7rem;
     font-size: 0.9rem;
+  }
+  .popular-recipes-grid {
+    grid-template-columns:auto;
+    gap: 1rem;
+  }
+
+  .popular-recipes-title {
+    font-size: 1.8rem;
+  }
+
+
+  .popular-recipes-header {
+    flex-direction:row;
+    gap: 1rem;
   }
 }

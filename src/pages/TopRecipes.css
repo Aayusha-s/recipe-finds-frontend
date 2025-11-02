@@ -569,8 +569,13 @@
   }
   
   .hero-stats {
-    flex-direction: column;
-    gap: 1.5rem;
+    flex-direction: row;
+    gap: 1.4rem;
+  }
+
+  .stats-item{
+    padding: 0%;
+    font-size: 0.9rem;
   }
   
   .container {

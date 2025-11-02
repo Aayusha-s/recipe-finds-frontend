@@ -88,7 +88,7 @@
   font-size: 2.5rem;
   color: #81A15F;
   margin-bottom: 1rem;
-  display: block;
+  display: inline;
   transition: all 0.3s ease;
 }
 
@@ -178,6 +178,7 @@
   
   .category-icon {
     font-size: 2rem;
+    display: inline;
   }
   
   .category-name {
@@ -187,7 +188,7 @@
 
 @media (max-width: 480px) {
   .categories-main-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   
   .categories-container {
@@ -195,7 +196,7 @@
   }
   
   .categories-grid {
-    gap: 0.8rem;
+    gap: 1rem;
   }
   
   .category-item {
@@ -205,10 +206,12 @@
   
   .category-icon {
     font-size: 1.8rem;
+    display: inline;
+    
   }
   
   .category-name {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }
 

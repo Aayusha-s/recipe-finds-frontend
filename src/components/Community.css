@@ -206,7 +206,8 @@
 
 .community-title .highlight {
   color: #63873E;
-  display: block;
+  display:contents;
+  align-items: center;
 }
 
 .community-description {
@@ -623,6 +624,7 @@
   .features-grid {
     max-width: 500px;
     margin: 0 auto 3rem;
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .stats-grid {
@@ -683,6 +685,7 @@
   
   .features-grid {
     gap: 1rem;
+    grid-template-columns: repeat(2,1fr);
   }
   
   .feature-item {
@@ -692,7 +695,8 @@
   
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
+    gap: 1rem;
+    /* width: auto; */
   }
   
   .stat-item {
@@ -732,7 +736,7 @@
   }
   
   .features-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2,1fr);
   }
   
   .feature-item {
@@ -746,8 +750,8 @@
   }
   
   .stats-grid {
-    grid-template-columns: 1fr;
-    max-width: 250px;
+    grid-template-columns: repeat(2,1fr);
+    max-width: 350px;
   }
   
   .showcase-container {
@@ -773,10 +777,10 @@
     margin: 0 auto;
   }
   
-  .user-1 { left: -15px; top: -20px; }
-  .user-2 { right: -20px; top: 40px; }
-  .user-3 { left: -10px; bottom: 70px; }
-  .user-4 { right: -15px; bottom: 20px; }
+  .user-1 { left: -15px; top: -30px; }
+  .user-2 { right: -20px; top: 10px; }
+  .user-3 { left: 20px; bottom: 10px; }
+  .user-4 { right: -15px; bottom: -30px; }
 }
 
 /* Extra Small Devices */

@@ -1,8 +1,90 @@
-/* Explore.css - UPDATED WITH COMPREHENSIVE FILTERS */
+/* Explore Navigation Menu */
+.explore-nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.explore-nav-item {
+  position: relative;
+}
+
+.explore-nav-link {
+  text-decoration: none;
+  color: #466D1D;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.explore-nav-link:hover {
+  color: #63873E;
+}
+
+.explore-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #63873E;
+  transition: width 0.3s ease;
+}
+
+.explore-nav-link:hover::after {
+  width: 100%;
+}
+
+.explore-nav-link-active {
+  color: #63873E !important;
+  font-weight: 600 !important;
+}
+
+.explore-nav-link-active::after {
+  width: 100% !important;
+}
+
+/* Responsive Design for Navigation */
+@media (max-width: 1024px) {
+  .explore-nav-menu {
+    gap: 1.5rem;
+  }
+  
+  .explore-nav-link {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .explore-nav-menu {
+    gap: 1.2rem;
+  }
+  
+  .explore-nav-link {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .explore-nav-menu {
+    display: none; /* Hide on mobile since we have the main header navigation */
+  }
+}
+
+
+
 .explore-page {
   min-height: 100vh;
   background: #F8FAF5;
 }
+
 
 /* Explore Header */
 .explore-header {
@@ -12,16 +94,18 @@
   position: sticky;
   top: 0;
   z-index: 1000;
+  height: 80px;
 }
 
 .explore-nav-container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
+  height: 100%;
 }
 
 .explore-logo .logo-image {
@@ -37,7 +121,8 @@
 /* Search Section */
 .explore-search-section {
   flex: 1;
-  max-width: 700px;
+  max-width: 400px;
+  max-height: 300px;
   position: relative;
 }
 
@@ -46,9 +131,11 @@
   align-items: center;
   background: white;
   border-radius: 30px;
-  padding: 0.5rem;
+  padding: 0.3rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border: 2px solid #D9EFC3;
+  border: 1px solid #D9EFC3;
+    transition: all 0.3s ease;
+
 }
 
 .search-input-wrapper {
@@ -58,20 +145,21 @@
   gap: 1rem;
 }
 
-.search-icon-left {
+/* .search-icon-left {
   font-size: 1rem;
   color: #81A15F;
   margin-left: 1rem;
-}
+} */
 
 .explore-search-input {
   border: none;
   outline: none;
-  padding: 0.7rem 0;
-  font-size: 1rem;
+ padding: 0.2rem 0.2rem;
+  font-size: 0.9rem;
   flex: 1;
   background: transparent;
   width: 100%;
+  margin-left: 10px;
 }
 
 .explore-search-input::placeholder {
@@ -82,9 +170,10 @@
   background: #F8FAF5;
   border: 1px solid #E3E9DD;
   color: #466D1D;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 0.6rem;
   border-radius: 20px;
-  font-weight: 500;
+  font-weight: 400;
+  font-size: small;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -101,9 +190,10 @@
   background: #81A15F;
   color: white;
   border: none;
-  padding: 0.8rem 1.5rem;
+  padding:  0.6rem 0.6rem;
   border-radius: 25px;
-  font-weight: 600;
+  font-weight: 400;
+  font-size: small;
   cursor: pointer;
   transition: background 0.3s ease;
   white-space: nowrap;
@@ -320,7 +410,7 @@
   border: none;
   padding: 0.8rem 1.8rem;
   border-radius: 25px;
-  font-weight: 600;
+  font-weight: 550;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -331,6 +421,7 @@
   white-space: nowrap;
 }
 
+
 .explore-signup-btn:hover {
   background: #466D1D;
   transform: translateY(-2px);
@@ -338,8 +429,8 @@
 }
 
 /* Main Content */
-.explore-main {
-  padding-top: 2rem;
+.explore-main{
+  padding: 1.5rem;
 }
 
 .explore-container {
@@ -348,10 +439,9 @@
   padding: 0 2rem;
 }
 
-/* TRUE PINTEREST MASONRY GRID WITH DRAMATIC SIZE DIFFERENCES */
 .masonry-grid {
-  column-count: 4;
-  column-gap: 25px;
+  column-count: 3;
+  column-gap: 15px;
   margin: 0 auto;
 }
 
@@ -362,7 +452,7 @@
   width: 100%;
 }
 
-/* DRAMATICALLY DIFFERENT CARD SIZES */
+
 .masonry-item.ultra-portrait {
   /* Very tall and narrow */
   width: 85%;
@@ -744,12 +834,15 @@
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.5rem;
   }
+  
 }
 
 @media (max-width: 900px) {
   .masonry-grid {
     column-count: 2;
   }
+
+
   
   .masonry-item.ultra-portrait .recipe-image-container {
     height: 500px;
@@ -778,20 +871,23 @@
 
 @media (max-width: 768px) {
   .explore-nav-container {
-    flex-direction: column;
-    gap: 1rem;
+    flex-direction: row;
+    gap: 2rem;
     padding: 0 1rem;
   }
+  .explore-btn-text {
+  display: none;
+}
   
   .explore-search-section {
     max-width: 100%;
-    order: 3;
+    /* order: 2; */
     width: 100%;
   }
   
   .explore-search-container {
-    flex-direction: column;
-    gap: 0.5rem;
+    flex-direction: row;
+    gap: 0.7rem;
   }
   
   .search-input-wrapper {
@@ -799,9 +895,17 @@
   }
   
   .explore-search-button {
-    width: 100%;
+    width: 18%;
+  }
+
+  .explore-search-input{
+    font-size: 0.85rem;
   }
   
+  .explore-signup-btn {
+    margin-left: auto;
+    order: 3;
+  }
   .filters-dropdown {
     padding: 1rem;
   }
@@ -835,13 +939,13 @@
   .masonry-item.ultra-landscape .recipe-image-container {
     height: 180px;
   }
+  
 }
 
 @media (max-width: 600px) {
   .masonry-grid {
-    column-count: 1;
+    column-count: 2;
   }
-  
   .masonry-item.ultra-portrait,
   .masonry-item.portrait,
   .masonry-item.square,
@@ -879,6 +983,60 @@
     font-size: 0.75rem;
     padding: 0.3rem 0.6rem;
   }
+
+.explore-nav-container {
+    flex-direction: row;
+    /* gap: 1rem; */
+    padding: 0 1rem;
+  }
+  
+  .explore-search-section {
+    max-width: 100%;
+    order: 2;
+    width: 100%;
+  }
+  
+  .explore-nav-container {
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+  }
+  
+  .explore-search-section {
+    margin: 0 0rem;
+  }
+  
+  .explore-search-container {
+    flex-direction: row;
+    gap: 0.3rem;
+  }
+  .explore-logo .logo-image {
+      height: 45px;
+    }
+
+  .filter-btn-text{
+    display: none;
+  }
+  
+  .explore-search-btn-text {
+    display: none;
+  }
+
+  .filter-toggle-btn{
+    padding:  0.6rem 1rem;
+  }
+
+
+  .explore-search-input{
+    font-size: 0.85rem;
+  }
+  
+  .explore-signup-btn {
+    margin-left: auto;
+    order: 3;
+    padding:  0.7rem 1.2rem;
+  }
+
 }
 
 @media (max-width: 480px) {
@@ -904,8 +1062,52 @@
     max-height: 150px;
   }
 
-}
+  .explore-nav-container {
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+  }
+  
+  .explore-search-section {
+    margin: 0 0rem;
+  }
+  
+  .explore-search-container {
+    flex-direction: row;
+    gap: 0.3rem;
+  }
+  .explore-logo .logo-image {
+      height: 45px;
+    }
 
+  .filter-btn-text{
+    display: none;
+  }
+  
+  .explore-search-btn-text {
+    display: none;
+  }
+
+  .filter-toggle-btn{
+    padding:  0.6rem 1rem;
+  }
+
+
+  .explore-search-input{
+    font-size: 0.85rem;
+  }
+  
+  .explore-signup-btn {
+    margin-left: auto;
+    order: 3;
+    padding:  0.7rem 1.2rem;
+  }
+
+  .recipe-stats{
+    flex-direction: row;
+  }
+ 
+}
 
 /* Results Count */
 .results-count {

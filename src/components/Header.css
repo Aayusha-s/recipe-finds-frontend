@@ -83,6 +83,25 @@
   white-space: nowrap;
 }
 
+/* Add to your existing Header.css */
+
+/* Active nav link styles */
+.nav-link-active {
+  color: #63873E !important;
+  font-weight: 600 !important;
+}
+
+.nav-link-active::after {
+  width: 100% !important;
+}
+
+/* For mobile active state */
+@media (max-width: 700px) {
+  .nav-link-active::after {
+    width: 30% !important;
+  }
+}
+
 .nav-link:hover {
   color: #63873E;
 }
@@ -177,6 +196,7 @@
   gap: 0.5rem;
   flex-shrink: 0;
   white-space: nowrap;
+  text-decoration: none;
 }
 
 .sign-up-btn:hover {
@@ -424,7 +444,7 @@
   }
   
   .sign-up-btn {
-    padding: 0.4rem;
+    padding: 0.6rem 1rem;
   }
   
   .btn-icon {

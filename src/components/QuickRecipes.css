@@ -119,6 +119,19 @@
   padding: 0;
 }
 
+.card-back .recipe-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.card-back .recipe-description {
+  font-size: 0.9rem;
+ color: white
+}
+
 .quick-recipe-card:hover .card-front {
   transform: rotateY(180deg);
 }
@@ -444,15 +457,19 @@
   }
   
   .quick-recipes-title {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
+  }
+
+  .header-content{
+    flex-direction: row;
   }
   
   .clock-icon {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
   }
   
   .view-all-btn {
-    padding: 0.6rem 1.2rem;
+    padding: 0.6rem 1rem;
     font-size: 0.85rem;
   }
   
@@ -510,6 +527,12 @@
     padding: 0.7rem 1rem;
     font-size: 0.85rem;
   }
+  .card-back .recipe-title{
+    font-size: 1.7rem;
+  }
+
+  
+  
 }
 
 /* Extra Small Devices */
@@ -517,6 +540,7 @@
   .quick-recipes-title {
     font-size: 1.4rem;
   }
+
   
   .quick-recipes-grid {
     max-width: 300px;
