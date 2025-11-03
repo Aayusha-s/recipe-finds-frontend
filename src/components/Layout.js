@@ -1,13 +1,17 @@
-// src/components/Layout.js
+// components/Layout.js
 import React from 'react';
-import Header from './Header';
+import { useAuth } from '../context/AuthContext';
+import Header from './header/Header';
+import HeaderLoggedIn from '../componentsLoggedIn/HeaderLoggedIn';
 import Footer from './Footer';
 import './Layout.css';
 
 const Layout = ({ children }) => {
+  const { isAuthenticated } = useAuth();
+
   return (
     <div className="layout">
-      <Header />
+      {isAuthenticated ? <HeaderLoggedIn /> : <Header />}
       <main className="main-content">
         {children}
       </main>

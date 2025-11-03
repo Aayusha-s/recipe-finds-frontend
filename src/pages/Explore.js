@@ -589,12 +589,12 @@ const Explore = () => {
           {/* ADDED NAVIGATION LINKS */}
           <ul className="explore-nav-menu">
             <li className="explore-nav-item">
-              <Link 
+              {/* <Link 
                 to="/" 
                 className={`explore-nav-link ${currentPath === '/' ? 'explore-nav-link-active' : ''}`}
               >
                 Home
-              </Link>
+              </Link> */}
             </li>
             <li className="explore-nav-item">
               <Link 

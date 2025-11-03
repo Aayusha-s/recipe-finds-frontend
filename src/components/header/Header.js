@@ -51,15 +51,7 @@ const Header = () => {
           </div>
           
           <ul className={`nav-menu ${isMenuOpen ? 'nav-menu-active' : ''}`}>
-            <li className="nav-item">
-              <Link 
-                to="/" 
-                className={`nav-link ${isActiveLink('/') ? 'nav-link-active' : ''}`} 
-                onClick={handleHomeClick}
-              >
-                Home
-              </Link>
-            </li>
+           
             <li className="nav-item">
               <Link 
                 to="/explore" 
@@ -95,7 +87,7 @@ const Header = () => {
             <div className="search-container">
               <input 
                 type="text" 
-                placeholder="Search recipes..." 
+                placeholder="Search recipes, ingredients or chefs..." 
                 className="search-input"
               />
               <button className="search-button">

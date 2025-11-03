@@ -9,9 +9,9 @@ import {
   faIceCream,
   faFire
 } from '@fortawesome/free-solid-svg-icons';
-import './Categories.css';
+import './CategoriesLoggedIn.css';
 
-const Categories = () => {
+const CategoriesLoggedIn = () => {
   const navigate = useNavigate();
 
   const categories = [
@@ -54,4 +54,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default CategoriesLoggedIn;

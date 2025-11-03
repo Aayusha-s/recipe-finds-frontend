@@ -12,7 +12,15 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
+
+   const [user, setUser] = useState({
+    id: 1,
+    name: 'Test User',
+    email: 'test@test.com',
+    avatar: 'https://i.pravatar.cc/150?img=1'
+  }); 
+  
   const [isLoading, setIsLoading] = useState(false);
 
   const login = async (email, password) => {

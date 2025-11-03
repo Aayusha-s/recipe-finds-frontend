@@ -1,9 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faHeart, faShare, faComment, faTrophy, faUpload } from '@fortawesome/free-solid-svg-icons';
-import './Community.css';
+import './CommunityLoggedin.css';
 
-const Community = () => {
+const CommunityLoggedin = () => {
   const communityFeatures = [
     {
       icon: faHeart,
@@ -160,4 +160,4 @@ const Community = () => {
   );
 };
 
-export default Community;
+export default CommunityLoggedin;

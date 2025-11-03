@@ -1,10 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faFire, faStar, faUtensils } from '@fortawesome/free-solid-svg-icons';
-import './QuickRecipes.css';
+import './QuickLoggedIn.css';
 import { useNavigate } from 'react-router-dom';
 
-const QuickRecipes = () => {
+const QuickLoggedIn = () => {
   const navigate = useNavigate(); 
 
   const quickRecipes = [
@@ -137,4 +137,4 @@ const QuickRecipes = () => {
   );
 };
 
-export default QuickRecipes;
+export default QuickLoggedIn;
