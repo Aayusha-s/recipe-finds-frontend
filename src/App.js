@@ -13,13 +13,11 @@ import Signup from "./pages/Signup";
 import "./App.css";
 import UserProfile from "./pages/UserProfile";
 import CategoryPage from "./pages/CategoryPage";
-import LayoutLoggedIn from "./components/LayoutLoggedIn";
 
-import HomeLoggedIn from './pages-protected/HomeLoggedIn';
-import ExploreLoggedIn from './pages-protected/ExploreLoggedIn';
-import CommunityPageLoggedIn from './pages-protected/CommunityPageLoggedIn';
-
-import TopRecipesLoggedIn from './pages-protected/TopRecipesLoggedIn';
+import Profile from './pages-protected/Profile';
+import Settings from './pages-protected/Settings';
+import ProtectedRoute from './components/ProtectedRoute';
+import CreateRecipe from "./pages-protected/CreateRecipe";
 
 function App() {
   return (
@@ -69,24 +67,7 @@ function App() {
                 </Layout>
               }
             />
-
-            <Route
-              path="/top-recipes"
-              element={
-                <Layout>
-                  <TopRecipes />
-                </Layout>
-              }
-            />
-
-            <Route
-              path="/community"
-              element={
-                <Layout>
-                  <Community />
-                </Layout>
-              }
-            />
+           
 
             <Route
               path="/chef/:username"
@@ -106,40 +87,35 @@ function App() {
               }
             />
 
-            {/* Protected/Logged-in Routes */}
-            <Route
-              path="/home-loggedin"
-              element={
-                <LayoutLoggedIn>
-                  <HomeLoggedIn />
-                </LayoutLoggedIn>
-              }
-            />
-            <Route
-              path="/explore-loggedin"
-              element={
-                <LayoutLoggedIn>
-                  <ExploreLoggedIn />
-                </LayoutLoggedIn>
-              }
-            />
-            <Route
-              path="/community-loggedin"
-              element={
-                <LayoutLoggedIn>
-                  <CommunityPageLoggedIn />
-                </LayoutLoggedIn>
-              }
-            />
+                {/* Protected Routes - Only accessible when logged in */}
+            
+            <Route path="/profile" element={
+              <ProtectedRoute>
+                <Layout>
+                  <Profile />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/settings" element={
+              <ProtectedRoute>
+                <Layout>
+                  <Settings />
+                </Layout>
+              </ProtectedRoute>
+            } />
 
-            <Route
-              path="/top-recipes-loggedin"
-              element={
-                <LayoutLoggedIn>
-                  <TopRecipesLoggedIn />
-                </LayoutLoggedIn>
-              }
-            />
+
+              <Route 
+  path="/create-recipe" 
+  element={
+    <ProtectedRoute>
+      <Layout>
+        <CreateRecipe />
+      </Layout>
+    </ProtectedRoute>
+  } 
+/>
 
             {/* Auth Routes (without Layout) */}
             <Route path="/login" element={<Login />} />

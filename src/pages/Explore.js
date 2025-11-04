@@ -1,5 +1,5 @@
-// Explore.js - WITH NAVIGATION LINKS ADDED
-import React, { useState, useEffect, useCallback } from 'react';
+// Explore.js - WITH DROPDOWN FUNCTIONALITY ADDED
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
@@ -14,11 +14,13 @@ import {
   faClock,
   faFire,
   faSpinner,
-  faTimes
+  faTimes,
+  faUser,
+  faSignOutAlt,
+  faCog
 } from '@fortawesome/free-solid-svg-icons';
 import './Explore.css';
 
-// Move recipe data outside component so it doesn't reset - ADD MORE RECIPES
 const ALL_RECIPES = [
   {
     id: 1,
@@ -322,6 +324,7 @@ const ALL_RECIPES = [
   }
 ];
 
+
 const Explore = () => {
   const [displayRecipes, setDisplayRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -330,14 +333,18 @@ const Explore = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [isFiltered, setIsFiltered] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  
+  // ADD DROPDOWN STATE AND REF
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
   
   // Add active nav link tracking
   const currentPath = location.pathname;
 
-   const handleRecipeClick = (recipeId) => {
+  const handleRecipeClick = (recipeId) => {
     navigate(`/recipe/${recipeId}`);
   };
 
@@ -355,8 +362,42 @@ const Explore = () => {
     navigate('/signup');
   };
 
+  // ADD DROPDOWN FUNCTIONS
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
-  // Filter states
+  const handleProfileClick = () => {
+    setIsDropdownOpen(false);
+    navigate('/profile');
+  };
+
+  const handleSettingsClick = () => {
+    setIsDropdownOpen(false);
+    navigate('/settings');
+  };
+
+  const handleLogout = () => {
+    setIsDropdownOpen(false);
+    logout();
+    navigate('/');
+  };
+
+  // ADD CLICK OUTSIDE DETECTION FOR DROPDOWN
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // ... (keep all your existing filter states and functions the same)
   const [filters, setFilters] = useState({
     cuisine: [],
     dietary: [],
@@ -589,14 +630,6 @@ const Explore = () => {
           {/* ADDED NAVIGATION LINKS */}
           <ul className="explore-nav-menu">
             <li className="explore-nav-item">
-              {/* <Link 
-                to="/" 
-                className={`explore-nav-link ${currentPath === '/' ? 'explore-nav-link-active' : ''}`}
-              >
-                Home
-              </Link> */}
-            </li>
-            <li className="explore-nav-item">
               <Link 
                 to="/explore" 
                 className={`explore-nav-link ${currentPath === '/explore' ? 'explore-nav-link-active' : ''}`}
@@ -625,7 +658,6 @@ const Explore = () => {
           <div className="explore-search-section">
             <div className="explore-search-container">
               <div className="search-input-wrapper">
-                {/* <FontAwesomeIcon icon={faSearch} className="search-icon-left" /> */}
                 <input 
                   type="text" 
                   placeholder="Search recipes, ingredients, or chefs..." 
@@ -657,8 +689,8 @@ const Explore = () => {
                   </button>
                 </div>
                 
-                 <div className="filters-grid">
-               {/* 1. Cuisine Type */}
+                <div className="filters-grid">
+                  {/* 1. Cuisine Type */}
                   <div className="filter-category">
                     <h4>Cuisine</h4>
                     <div className="filter-options">
@@ -808,8 +840,7 @@ const Explore = () => {
                       ))}
                     </div>
                   </div>
-                  </div>
-                  
+                </div>
 
                 <div className="filter-actions">
                   <button className="apply-filters-btn" onClick={applyFilters}>
@@ -820,10 +851,53 @@ const Explore = () => {
             )}
           </div>
 
-            {isAuthenticated ? (
-            <div className="user-info-header">
-              <img src={user.avatar} alt={user.name} className="user-avatar-small" />
-              <span className="user-name-header">{user.name}</span>
+          {/* UPDATED: ADD DROPDOWN FUNCTIONALITY FOR LOGGED-IN USERS */}
+          {isAuthenticated ? (
+            <div className="user-menu-explore" ref={dropdownRef}>
+              <div className="user-avatar-container-explore" onClick={toggleDropdown}>
+                <img 
+                  src={user?.avatar || '/images/default-avatar.png'} 
+                  alt={user?.name || 'User'} 
+                  className="user-avatar-explore"
+                />
+                <span className="user-name-explore">{user?.name || 'User'}</span>
+              </div>
+              
+              {/* DROPDOWN MENU */}
+              {isDropdownOpen && (
+                <div className="dropdown-menu-explore">
+                  <div className="dropdown-header-explore">
+                    <img 
+                      src={user?.avatar || '/images/default-avatar.png'} 
+                      alt={user?.name || 'User'} 
+                      className="dropdown-avatar-explore"
+                    />
+                    <div className="user-info-explore">
+                      <div className="user-display-name-explore">{user?.name || 'User'}</div>
+                      <div className="user-email-explore">{user?.email || 'user@example.com'}</div>
+                    </div>
+                  </div>
+                  
+                  <div className="dropdown-divider-explore"></div>
+                  
+                  <button className="dropdown-item-explore" onClick={handleProfileClick}>
+                    <FontAwesomeIcon icon={faUser} className="dropdown-icon-explore" />
+                    <span>My Profile</span>
+                  </button>
+                  
+                  <button className="dropdown-item-explore" onClick={handleSettingsClick}>
+                    <FontAwesomeIcon icon={faCog} className="dropdown-icon-explore" />
+                    <span>Settings</span>
+                  </button>
+                  
+                  <div className="dropdown-divider-explore"></div>
+                  
+                  <button className="dropdown-item-explore logout-item-explore" onClick={handleLogout}>
+                    <FontAwesomeIcon icon={faSignOutAlt} className="dropdown-icon-explore" />
+                    <span>Logout</span>
+                  </button>
+                </div>
+              )}
             </div>
           ) : (
             <button 
@@ -893,85 +967,82 @@ const Explore = () => {
             </div>
           )}
 
-</div>
-{/* Masonry Grid */}
-<div className="masonry-grid">
-           {displayRecipes.map(recipe => (
-    <div 
-      key={recipe.id} 
-      className={`masonry-item ${recipe.type}`}
-      onClick={() => handleRecipeClick(recipe.id)}
-    >
-      <div className="recipe-card-pinterest">
-        <div className="recipe-image-container">
-          <img 
-            src={recipe.image} 
-            alt={recipe.title}
-            className="recipe-image-pinterest"
-          />
-          <div className="recipe-overlay">
-            <button className="save-btn" onClick={handleLikeClick}>
-              <FontAwesomeIcon icon={faHeart} className="save-icon" />
-            </button>
-            <div className="recipe-time">
-              <FontAwesomeIcon icon={faClock} className="time-icon" />
-              {recipe.cookingTime}min
-            </div>
+          {/* Masonry Grid */}
+          <div className="masonry-grid">
+            {displayRecipes.map(recipe => (
+              <div 
+                key={recipe.id} 
+                className={`masonry-item ${recipe.type}`}
+                onClick={() => handleRecipeClick(recipe.id)}
+              >
+                <div className="recipe-card-pinterest">
+                  <div className="recipe-image-container">
+                    <img 
+                      src={recipe.image} 
+                      alt={recipe.title}
+                      className="recipe-image-pinterest"
+                    />
+                    <div className="recipe-overlay">
+                      <button className="save-btn" onClick={handleLikeClick}>
+                        <FontAwesomeIcon icon={faHeart} className="save-icon" />
+                      </button>
+                      <div className="recipe-time">
+                        <FontAwesomeIcon icon={faClock} className="time-icon" />
+                        {recipe.cookingTime}min
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="recipe-info-pinterest">
+                    <h3 className="recipe-title">{recipe.title}</h3>
+                    <p className="recipe-description">{recipe.description}</p>
+                    <div className="recipe-meta">
+                      <div 
+                        className="user-info"
+                        onClick={(e) => handleChefClick(recipe.user.name, e)}
+                      >
+                        <img 
+                          src={recipe.user.avatar} 
+                          alt={recipe.user.name}
+                          className="user-avatar"
+                        />
+                        <span className="user-name">{recipe.user.name}</span>
+                      </div>
+                      <div className="recipe-stats">
+                        <span className="likes">
+                          <FontAwesomeIcon icon={faHeart} className="like-icon" />
+                          {recipe.likes}
+                        </span>
+                        <span className="difficulty">
+                          <FontAwesomeIcon icon={faFire} className="difficulty-icon" />
+                          {recipe.difficulty}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* No Results Message */}
+            {isFiltered && displayRecipes.length === 0 && !loading && (
+              <div className="no-results">
+                <h3>No recipes found</h3>
+                <p>Try adjusting your filters or search terms</p>
+                <button className="clear-all-filters" onClick={clearAllFilters}>
+                  Clear All Filters
+                </button>
+              </div>
+            )}
+
+            {/* Loading Indicator */}
+            {loading && (
+              <div className="loading-indicator">
+                <FontAwesomeIcon icon={faSpinner} className="loading-spinner" spin />
+                <p>{isFiltered ? 'Searching recipes...' : 'Loading more delicious recipes...'}</p>
+              </div>
+            )}
           </div>
-        </div>
-        
-        <div className="recipe-info-pinterest">
-          <h3 className="recipe-title">{recipe.title}</h3>
-          <p className="recipe-description">{recipe.description}</p>
-          <div className="recipe-meta">
-            <div 
-              className="user-info"
-              onClick={(e) => handleChefClick(recipe.user.name, e)}
-            >
-              <img 
-                src={recipe.user.avatar} 
-                alt={recipe.user.name}
-                className="user-avatar"
-              />
-              <span className="user-name">{recipe.user.name}</span>
-            </div>
-            <div className="recipe-stats">
-              <span className="likes">
-                <FontAwesomeIcon icon={faHeart} className="like-icon" />
-                {recipe.likes}
-              </span>
-              <span className="difficulty">
-                <FontAwesomeIcon icon={faFire} className="difficulty-icon" />
-                {recipe.difficulty}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  ))}
-
-
-          {/* No Results Message */}
-          {isFiltered && displayRecipes.length === 0 && !loading && (
-            <div className="no-results">
-              <h3>No recipes found</h3>
-              <p>Try adjusting your filters or search terms</p>
-              <button className="clear-all-filters" onClick={clearAllFilters}>
-                Clear All Filters
-              </button>
-            </div>
-          )}
-
-          {/* Loading Indicator */}
-          {loading && (
-            <div className="loading-indicator">
-              <FontAwesomeIcon icon={faSpinner} className="loading-spinner" spin />
-              <p>{isFiltered ? 'Searching recipes...' : 'Loading more delicious recipes...'}</p>
-            </div>
-          )}
-
-          
         </div>
       </main>
     </div>

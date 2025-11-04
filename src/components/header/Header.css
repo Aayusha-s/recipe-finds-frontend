@@ -1,5 +1,4 @@
-/* Header.css - Enhanced Responsive Design */
-
+/* src/components/header/Header.css */
 .header {
   background: linear-gradient(135deg, #E3E9DD 0%, #ADC891 100%);
   padding: 1rem 0;
@@ -73,8 +72,6 @@
   transition: all 0.3s ease;
 }
 
-
-
 .nav-link {
   text-decoration: none;
   color: #466D1D;
@@ -85,8 +82,6 @@
   transition: all 0.3s ease;
   white-space: nowrap;
 }
-
-/* Add to your existing Header.css */
 
 /* Active nav link styles */
 .nav-link-active {
@@ -128,15 +123,18 @@
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 5.5rem;
+  gap: 1.5rem;
   flex-shrink: 0;
-  
+}
 
+/* Search Wrapper */
+.search-wrapper {
+  position: relative;
 }
 
 /* Search Bar */
 .search-container {
-   display: flex;
+  display: flex;
   align-items: center;
   background: white;
   border-radius: 30px;
@@ -145,12 +143,19 @@
   border: 1px solid #D9EFC3;
   transition: all 0.3s ease;
   max-width: 400px;
+  position: relative;
+  z-index: 1001;
+}
+
+.search-container:focus-within {
+  box-shadow: 0 4px 15px rgba(99, 135, 62, 0.2);
+  border-color: #81A15F;
 }
 
 .search-input {
   border: none;
   outline: none;
- padding: 0.2rem 0.2rem;
+  padding: 0.2rem 0.2rem;
   font-size: 0.9rem;
   flex: 1;
   background: transparent;
@@ -185,7 +190,80 @@
   color: white;
 }
 
-/* Sign Up Button */
+/* Search Suggestions */
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid #E3E9DD;
+  margin-top: 0.5rem;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1002;
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background: #F8FAF5;
+}
+
+.suggestion-content {
+  flex: 1;
+}
+
+.suggestion-title {
+  font-weight: 600;
+  color: #466D1D;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.suggestion-category {
+  font-size: 0.8rem;
+  color: #81A15F;
+}
+
+.suggestion-type {
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.suggestion-type.recipe {
+  background: #E3E9DD;
+  color: #466D1D;
+}
+
+.suggestion-type.ingredient {
+  background: #FFF3CD;
+  color: #856404;
+}
+
+.suggestion-type.chef {
+  background: #D1ECF1;
+  color: #0C5460;
+}
+
+/* Sign Up Button (Guest) */
 .sign-up-btn {
   background: #63873E;
   color: white;
@@ -217,6 +295,135 @@
 
 .btn-text {
   display: inline;
+}
+
+/* User Menu (Logged-in) */
+.user-menu {
+  position: relative;
+}
+
+.user-avatar-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.user-avatar-container:hover {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: #63873E;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #63873E;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #466D1D;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid #E3E9DD;
+  min-width: 250px;
+  z-index: 1002;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem;
+  background: #F8FAF5;
+  border-bottom: 1px solid #E3E9DD;
+}
+
+.dropdown-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #63873E;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-display-name {
+  font-weight: 600;
+  color: #466D1D;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.user-email {
+  font-size: 0.8rem;
+  color: #81A15F;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #E3E9DD;
+  margin: 0.3rem 0;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 1.2rem;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #466D1D;
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+  background: #F8FAF5;
+  color: #63873E;
+}
+
+.dropdown-icon {
+  width: 16px;
+  color: #81A15F;
+}
+
+.logout-item {
+  color: #FF6B6B;
+}
+
+.logout-item:hover {
+  background: #FFF5F5;
+  color: #FF4757;
+}
+
+.logout-item .dropdown-icon {
+  color: #FF6B6B;
 }
 
 /* ========== ENHANCED RESPONSIVE DESIGN ========== */
@@ -259,6 +466,14 @@
   .search-button {
     width: 32px;
     height: 32px;
+  }
+  
+  .user-name {
+    display: none;
+  }
+  
+  .user-avatar-container {
+    padding: 0.5rem;
   }
   
   .sign-up-btn {
@@ -341,7 +556,7 @@
     max-width: 300px;
   }
   
-   .nav-link {
+  .nav-link {
     display: block;
     padding: 1.2rem 2rem;
     font-size: 1.3rem;
@@ -351,7 +566,7 @@
     transition: all 0.3s ease;
   }
   
- .nav-link::after {
+  .nav-link::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -370,6 +585,16 @@
   
   .search-input {
     width: 140px;
+  }
+  
+  .dropdown-menu {
+    right: -50px;
+    min-width: 220px;
+  }
+  
+  .search-suggestions {
+    left: -50px;
+    right: -50px;
   }
   
   .btn-text {
@@ -399,6 +624,11 @@
   
   .search-container {
     display: none;
+  }
+  
+  .user-avatar {
+    width: 35px;
+    height: 35px;
   }
   
   .sign-up-btn {
@@ -447,6 +677,20 @@
   
   .hamburger-icon {
     font-size: 1.3rem;
+  }
+  
+  .user-avatar-container {
+    padding: 0.3rem;
+  }
+  
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .dropdown-menu {
+    right: -30px;
+    min-width: 200px;
   }
   
   .sign-up-btn {

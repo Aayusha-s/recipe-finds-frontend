@@ -2,7 +2,6 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import Header from './header/Header';
-import HeaderLoggedIn from '../componentsLoggedIn/HeaderLoggedIn';
 import Footer from './Footer';
 import './Layout.css';
 
@@ -11,7 +10,7 @@ const Layout = ({ children }) => {
 
   return (
     <div className="layout">
-      {isAuthenticated ? <HeaderLoggedIn /> : <Header />}
+      <Header />
       <main className="main-content">
         {children}
       </main>

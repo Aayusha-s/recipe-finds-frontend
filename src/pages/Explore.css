@@ -1234,3 +1234,172 @@
   font-weight: 600;
   font-size: 0.9rem;
 }
+
+
+
+
+
+/* Add to Explore.css */
+
+/* User Menu Dropdown Styles for Explore Page */
+.user-menu-explore {
+  position: relative;
+}
+
+.user-avatar-container-explore {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.user-avatar-container-explore:hover {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: #63873E;
+}
+
+.user-avatar-explore {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #63873E;
+}
+
+.user-name-explore {
+  font-weight: 600;
+  color: #466D1D;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Dropdown Menu */
+.dropdown-menu-explore {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid #E3E9DD;
+  min-width: 250px;
+  z-index: 1002;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+
+.dropdown-header-explore {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem;
+  background: #F8FAF5;
+  border-bottom: 1px solid #E3E9DD;
+}
+
+.dropdown-avatar-explore {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #63873E;
+}
+
+.user-info-explore {
+  flex: 1;
+}
+
+.user-display-name-explore {
+  font-weight: 600;
+  color: #466D1D;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.user-email-explore {
+  font-size: 0.8rem;
+  color: #81A15F;
+}
+
+.dropdown-divider-explore {
+  height: 1px;
+  background: #E3E9DD;
+  margin: 0.3rem 0;
+}
+
+.dropdown-item-explore {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 1.2rem;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #466D1D;
+  font-size: 0.9rem;
+}
+
+.dropdown-item-explore:hover {
+  background: #F8FAF5;
+  color: #63873E;
+}
+
+.dropdown-icon-explore {
+  width: 16px;
+  color: #81A15F;
+}
+
+.logout-item-explore {
+  color: #FF6B6B;
+}
+
+.logout-item-explore:hover {
+  background: #FFF5F5;
+  color: #FF4757;
+}
+
+.logout-item-explore .dropdown-icon-explore {
+  color: #FF6B6B;
+}
+
+/* Responsive adjustments for dropdown */
+@media (max-width: 900px) {
+  .user-name-explore {
+    display: none;
+  }
+  
+  .user-avatar-container-explore {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dropdown-menu-explore {
+    right: -50px;
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-avatar-container-explore {
+    padding: 0.3rem;
+  }
+  
+  .user-avatar-explore {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .dropdown-menu-explore {
+    right: -30px;
+    min-width: 200px;
+  }
+}

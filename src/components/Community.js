@@ -1,9 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faHeart, faShare, faComment, faTrophy, faUpload } from '@fortawesome/free-solid-svg-icons';
 import './Community.css';
 
 const Community = () => {
+  const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuth();
+
   const communityFeatures = [
     {
       icon: faHeart,
@@ -34,6 +39,38 @@ const Community = () => {
     { number: "10K+", label: "Success Stories" }
   ];
 
+  const handleJoinCommunity = () => {
+    if (isAuthenticated) {
+      // User is logged in - navigate to community features
+      navigate('/community-feed');
+    } else {
+      // User is guest - redirect to signup
+      navigate('/signup', { state: { from: '/community' } });
+    }
+  };
+
+  const handleShareRecipe = () => {
+    if (isAuthenticated) {
+      // User is logged in - navigate to recipe creation
+      navigate('/create-recipe');
+    } else {
+      // User is guest - redirect to login
+      navigate('/login', { state: { from: '/community', message: 'Please login to share your recipes' } });
+    }
+  };
+
+  const handleFeatureClick = (featureTitle) => {
+    if (!isAuthenticated) {
+      navigate('/signup', { 
+        state: { 
+          from: '/community',
+          message: `Join our community to ${featureTitle.toLowerCase()}!` 
+        } 
+      });
+    }
+    // If user is authenticated, the features are automatically available
+  };
+
   return (
     <section className="community-section">
       <div className="container">
@@ -52,20 +89,30 @@ const Community = () => {
             </h2>
             
             <p className="community-description">
-              Join thousands of passionate cooks sharing recipes, tips, and culinary experiences. 
-              Be part of a supportive community that celebrates good food and great company.
+              {isAuthenticated 
+                ? `Welcome back, ${user?.name}! Continue sharing your culinary journey with our amazing community.`
+                : 'Join thousands of passionate cooks sharing recipes, tips, and culinary experiences. Be part of a supportive community that celebrates good food and great company.'
+              }
             </p>
 
             {/* Community Features */}
             <div className="features-grid">
               {communityFeatures.map((feature, index) => (
-                <div key={index} className="feature-item">
+                <div 
+                  key={index} 
+                  className="feature-item"
+                  onClick={() => handleFeatureClick(feature.title)}
+                  style={{ cursor: isAuthenticated ? 'default' : 'pointer' }}
+                >
                   <div className="feature-icon-wrapper">
                     <FontAwesomeIcon icon={feature.icon} className="feature-icon" />
                   </div>
                   <div className="feature-content">
                     <h4 className="feature-title">{feature.title}</h4>
                     <p className="feature-description">{feature.description}</p>
+                    {!isAuthenticated && (
+                      <div className="feature-hint">Sign up to unlock</div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -83,16 +130,28 @@ const Community = () => {
 
             {/* CTA Buttons */}
             <div className="community-actions">
-              <button className="join-now-btn">
-                
+              <button 
+                className="join-now-btn"
+                onClick={handleJoinCommunity}
+              >
                 <FontAwesomeIcon icon={faUsers} className="btn-icon" />
-                Join Community Now
+                {isAuthenticated ? 'Explore Community' : 'Join Community Now'}
               </button>
-              <button className="share-recipe-btn">
+              <button 
+                className="share-recipe-btn"
+                onClick={handleShareRecipe}
+              >
                 <FontAwesomeIcon icon={faUpload} className="btn-icon" />
-                Share Your Recipe
+                {isAuthenticated ? 'Share Your Recipe' : 'Share Your Recipe'}
               </button>
             </div>
+
+            {/* Additional info for guests */}
+            {!isAuthenticated && (
+              <div className="guest-notice">
+                <p>Join now to unlock all community features and connect with food lovers worldwide!</p>
+              </div>
+            )}
           </div>
 
           {/* Right Side - Community Showcase */}

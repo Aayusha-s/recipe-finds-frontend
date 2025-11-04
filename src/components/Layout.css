@@ -1,4 +1,4 @@
-/* src/components/Layout.css */
+/* components/Layout.css */
 .layout {
   min-height: 100vh;
   display: flex;
@@ -7,5 +7,20 @@
 
 .main-content {
   flex: 1;
-  /* This ensures content grows and pushes footer to bottom */
+  padding-top: 80px; /* Account for fixed header height */
+}
+
+/* Optional: Different background based on authentication status */
+.layout-guest .main-content {
+  background: linear-gradient(135deg, #F8FAF5 0%, #E3E9DD 100%);
+}
+
+.layout-loggedin .main-content {
+  background: #f8f9fa;
+}
+
+/* Ensure content doesn't get hidden behind fixed header */
+.main-content > * {
+  position: relative;
+  z-index: 1;
 }

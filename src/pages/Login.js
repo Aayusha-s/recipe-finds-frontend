@@ -14,9 +14,11 @@ import {
   faArrowLeft
 } from '@fortawesome/free-solid-svg-icons';
 import './Login.css';
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
   const navigate = useNavigate();
+  const {login} = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -57,21 +59,29 @@ const Login = () => {
     return newErrors;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const newErrors = validateForm();
-    
-    if (Object.keys(newErrors).length === 0) {
-      setIsLoading(true);
-      // Simulate API call
-      setTimeout(() => {
-        setIsLoading(false);
-        navigate('/');
-      }, 1500);
-    } else {
-      setErrors(newErrors);
+// src/pages/Login.js - UPDATE THE HANDLESUBMIT FUNCTION
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const newErrors = validateForm();
+  
+  if (Object.keys(newErrors).length === 0) {
+    setIsLoading(true);
+    try {
+      // Use the actual login function from AuthContext
+      await login(formData.email, formData.password);
+      // No need to navigate - the AuthContext will update and components will re-render
+    } catch (error) {
+      setErrors({ general: 'Login failed. Please check your credentials.' });
+    } finally {
+      setIsLoading(false);
     }
-  };
+  } else {
+    setErrors(newErrors);
+  }
+};
+
+// Add this error display after your form
+{errors.general && <span className="error-message general-error">{errors.general}</span>}
 
   const handleBack = () => {
     navigate(-1);

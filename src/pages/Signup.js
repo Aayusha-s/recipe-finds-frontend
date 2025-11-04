@@ -15,9 +15,11 @@ import {
   faArrowLeft
 } from '@fortawesome/free-solid-svg-icons';
 import './Signup.css';
+import { useAuth } from '../context/AuthContext';
 
 const Signup = () => {
   const navigate = useNavigate();
+  const {signup} = useAuth();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -74,21 +76,41 @@ const Signup = () => {
     return newErrors;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const newErrors = validateForm();
-    
-    if (Object.keys(newErrors).length === 0) {
-      setIsLoading(true);
-      // Simulate API call
-      setTimeout(() => {
-        setIsLoading(false);
-        navigate('/');
-      }, 2000);
-    } else {
-      setErrors(newErrors);
+ // src/pages/Signup.js - UPDATE HANDLESUBMIT
+// src/pages/Signup.js - UPDATE THE HANDLESUBMIT FUNCTION
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const newErrors = validateForm();
+  
+  if (Object.keys(newErrors).length === 0) {
+    setIsLoading(true);
+    try {
+      // Use the actual signup function from AuthContext
+      await signup({
+        name: formData.username,
+        email: formData.email,
+        password: formData.password
+      });
+      
+      // Redirect to login page after successful signup
+      navigate('/login', { 
+        state: { 
+          message: 'Account created successfully! Please sign in.',
+          email: formData.email 
+        }
+      });
+      
+    } catch (error) {
+      setErrors({ general: 'Signup failed. Please try again.' });
+    } finally {
+      setIsLoading(false);
     }
-  };
+  } else {
+    setErrors(newErrors);
+  }
+};
+// Add this after your form
+{errors.general && <span className="error-message general-error">{errors.general}</span>}
 
   const passwordStrength = {
     length: formData.password.length >= 6,

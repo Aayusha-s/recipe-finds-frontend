@@ -1,4 +1,56 @@
 /* Community.css - Enhanced Responsive Design */
+/* Add to Community.css */
+
+/* Feature hint for guest users */
+.feature-hint {
+  font-size: 0.75rem;
+  color: #FF6B6B;
+  font-weight: 600;
+  margin-top: 0.3rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* Guest notice */
+.guest-notice {
+  background: rgba(129, 161, 95, 0.1);
+  padding: 1rem;
+  border-radius: 12px;
+  border-left: 4px solid #81A15F;
+  margin-top: 1.5rem;
+}
+
+.guest-notice p {
+  color: #466D1D;
+  font-size: 0.9rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Feature items cursor change for guests */
+.feature-item {
+  transition: all 0.3s ease;
+}
+
+.feature-item:not(.authenticated):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(99, 135, 62, 0.2);
+}
+
+
+
+
+
+
+
+
+
+
+
 .community-section {
   padding: 100px 0;
   background: linear-gradient(135deg, #E3E9DD 0%, #F8FAF5 50%, #FFF9F0 100%);
